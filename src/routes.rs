@@ -9,7 +9,10 @@ use crate::{handlers, state::SharedState};
 pub fn build_router(state: SharedState) -> Router {
     Router::new()
         .route("/health", get(handlers::health_check))
-        .route("/items", get(handlers::list_items).post(handlers::create_item))
+        .route(
+            "/items",
+            get(handlers::list_items).post(handlers::create_item),
+        )
         .route(
             "/items/:id",
             get(handlers::get_item)

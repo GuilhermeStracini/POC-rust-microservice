@@ -58,10 +58,7 @@ pub async fn update_item(
     }
 }
 
-pub async fn delete_item(
-    State(state): State<SharedState>,
-    Path(id): Path<Uuid>,
-) -> StatusCode {
+pub async fn delete_item(State(state): State<SharedState>, Path(id): Path<Uuid>) -> StatusCode {
     let mut items = state.items.write().await;
     if items.remove(&id).is_some() {
         StatusCode::NO_CONTENT
